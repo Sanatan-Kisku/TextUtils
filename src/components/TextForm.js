@@ -6,7 +6,12 @@ export default function TextForm(props) {
     // console.log("Uppercase was selected " + text);
     let newText = text.toUpperCase();
     setText(newText)
-    props.showAlert("Converted to Upper Case!", "success")
+    if (text.length === 0) {
+      props.showAlert("Textfield is empty!", "warning")
+
+    } else {
+      props.showAlert("Converted to Upper Case!", "success")
+    }
   }
   const handleOnChange = (event) => {
     // console.log("On change");
@@ -15,34 +20,70 @@ export default function TextForm(props) {
   const handleLoClick = () => {
     let newText = text.toLowerCase();
     setText(newText)
-    props.showAlert("Converted to Lower Case!", "success")
+    if (text.length === 0) {
+      props.showAlert("Textfield is empty!", "warning")
+    } else {
+      props.showAlert("Converted to Lower Case!", "success")
+    }
   }
   const handleClearClick = () => {
     let newText = "";
     setText(newText)
-    props.showAlert("All Cleared!", "success")
+    if (text.length === 0) {
+      props.showAlert("Textfield is empty", "warning")
+    } else {
+      props.showAlert("All Cleared!", "success")
+    }
 
   }
   const handleCopy = () => {
-    const text = document.getElementById("myBox")
-    text.select()
-    navigator.clipboard.writeText(text.value)
-    props.showAlert("Copied to clipboard!", "success")
+    if (text.length === 0) {
+      props.showAlert("Textfield is empty", "warning")
+    } else {
+      const newText = document.getElementById("myBox")
+      newText.select()
+      navigator.clipboard.writeText(newText.value)
+      props.showAlert("Copied to clipboard!", "success")
+    }
   }
+
+  // const handlePaste = async () => {
+  //   const read = await navigator.clipboard.readText();
+  //   console.log(read)
+  //   if (read.length === 0) {
+  //     props.showAlert("Nothing in clipboard to paste!", "warning")
+  //   } else {
+  //     document.getElementById("myBox").value = read;
+  //     props.showAlert("Pasted to Textbox!", "success")
+  //   }
+  // }
+
   const handleExtraSpaces = () => {
     const newText = text.split(/[ ]+/)
     setText(newText.join(" "))
-    props.showAlert("Extra spaces are removed!", "success")
+    if (text.length === 0) {
+      props.showAlert("Textfield is empty", "warning")
+    } else {
+      props.showAlert("Extra spaces are removed!", "success")
+    }
   }
   const handleRmVowels = () => {
     const newText = text.replace(/[aeiou]/gi, '')
     setText(newText)
-    props.showAlert("All vowels are removed!", "success")
+    if (text.length === 0) {
+      props.showAlert("Textfield is empty", "warning")
+    } else {
+      props.showAlert("All vowels are removed!", "success")
+    }
   }
   const handleAllSpaces = () => {
     const newText = text.split(/[ ]+/)
     setText(newText.join(""))
-    props.showAlert("All spaces are removed!", "success")
+    if (text.length === 0) {
+      props.showAlert("Textfield is empty", "warning")
+    } else {
+      props.showAlert("All spaces are removed!", "success")
+    }
   }
   const [text, setText] = useState("");
   return (
@@ -50,7 +91,7 @@ export default function TextForm(props) {
       <div className="container" style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
         <h1>{props.heading}</h1>
         <div className="mb-3">
-          <textarea className="form-control" onChange={handleOnChange} style={{ backgroundColor: props.mode === 'dark' ? '#2d60b3' : 'white', color: props.mode === 'dark' ? 'white' : '#042743' }} value={text} id="myBox" rows="8" />
+          <textarea className="form-control" onChange={handleOnChange} style={{ backgroundColor: props.mode === 'dark' ? '#2d60b3' : 'white', color: props.mode === 'dark' ? 'white' : '#042743' }} value={text} id="myBox" rows="8" ></textarea>
         </div>
         <button className='btn btn-primary mx-2' onClick={handleUpClick}>Convert to Upper Case</button>
         <button className='btn btn-primary mx-2' onClick={handleLoClick}>Convert to Lower Case</button>
@@ -59,6 +100,7 @@ export default function TextForm(props) {
         <button className='btn btn-primary mx-2' onClick={handleExtraSpaces}>Remove Extra Spaces</button>
         <button className='btn btn-primary mx-2' onClick={handleAllSpaces}>Remove All Spaces</button>
         <button className='btn btn-primary m-2' onClick={handleRmVowels}>Remove Vowels</button>
+        {/* <button className='btn btn-primary m-2' onClick={handlePaste}>Paste Text</button> */}
       </div>
       <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
         <h2>Your text summary</h2>
