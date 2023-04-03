@@ -6,6 +6,7 @@ export default function TextForm(props) {
     // console.log("Uppercase was selected " + text);
     let newText = text.toUpperCase();
     setText(newText)
+    props.showAlert("Converted to Upper Case!", "success")
   }
   const handleOnChange = (event) => {
     // console.log("On change");
@@ -14,27 +15,34 @@ export default function TextForm(props) {
   const handleLoClick = () => {
     let newText = text.toLowerCase();
     setText(newText)
+    props.showAlert("Converted to Lower Case!", "success")
   }
   const handleClearClick = () => {
     let newText = "";
     setText(newText)
+    props.showAlert("All Cleared!", "success")
+
   }
   const handleCopy = () => {
     const text = document.getElementById("myBox")
     text.select()
     navigator.clipboard.writeText(text.value)
+    props.showAlert("Copied to clipboard!", "success")
   }
   const handleExtraSpaces = () => {
     const newText = text.split(/[ ]+/)
     setText(newText.join(" "))
+    props.showAlert("Extra spaces are removed!", "success")
   }
   const handleRmVowels = () => {
     const newText = text.replace(/[aeiou]/gi, '')
     setText(newText)
+    props.showAlert("All vowels are removed!", "success")
   }
   const handleAllSpaces = () => {
     const newText = text.split(/[ ]+/)
     setText(newText.join(""))
+    props.showAlert("All spaces are removed!", "success")
   }
   const [text, setText] = useState("");
   return (
