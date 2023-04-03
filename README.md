@@ -1,2 +1,2 @@
 # TextUtils
-A Text analyzer website that lets user to perform different actions on any text provided by the user.
+TextUtils is a utility which can be used to manipulate your text in the way you want.
