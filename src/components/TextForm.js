@@ -43,6 +43,7 @@ export default function TextForm(props) {
       const newText = document.getElementById("myBox")
       newText.select()
       navigator.clipboard.writeText(newText.value)
+      document.getSelection().removeAllRanges()
       props.showAlert("Copied to clipboard!", "success")
     }
   }
