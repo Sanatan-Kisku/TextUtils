@@ -93,18 +93,18 @@ export default function TextForm(props) {
         <div className="mb-3">
           <textarea className="form-control" onChange={handleOnChange} style={{ backgroundColor: props.mode === 'dark' ? '#2d60b3' : 'white', color: props.mode === 'dark' ? 'white' : '#042743' }} value={text} id="myBox" rows="8" ></textarea>
         </div>
-        <button className='btn btn-primary mx-2' onClick={handleUpClick}>Convert to Upper Case</button>
-        <button className='btn btn-primary mx-2' onClick={handleLoClick}>Convert to Lower Case</button>
-        <button className='btn btn-primary mx-2' onClick={handleClearClick}>Clear Text</button>
-        <button className='btn btn-primary mx-2' onClick={handleCopy}>Copy Text</button>
-        <button className='btn btn-primary mx-2' onClick={handleExtraSpaces}>Remove Extra Spaces</button>
-        <button className='btn btn-primary mx-2' onClick={handleAllSpaces}>Remove All Spaces</button>
-        <button className='btn btn-primary m-2' onClick={handleRmVowels}>Remove Vowels</button>
+        <button className='btn btn-primary m-1' onClick={handleUpClick}>Convert to Upper Case</button>
+        <button className='btn btn-primary m-1' onClick={handleLoClick}>Convert to Lower Case</button>
+        <button className='btn btn-primary m-1' onClick={handleClearClick}>Clear Text</button>
+        <button className='btn btn-primary m-1' onClick={handleCopy}>Copy Text</button>
+        <button className='btn btn-primary m-1' onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+        <button className='btn btn-primary m-1' onClick={handleAllSpaces}>Remove All Spaces</button>
+        <button className='btn btn-primary m-1' onClick={handleRmVowels}>Remove Vowels</button>
         {/* <button className='btn btn-primary m-2' onClick={handlePaste}>Paste Text</button> */}
       </div>
       <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
         <h2>Your text summary</h2>
-        <p>{text.split(" ").length} words and {text.length} characters</p>
+        <p>{text.split(" ").filter((element) => { return element.length !== 0 }).length} words and {text.length} characters</p>
         <p>Will take {0.008 * text.split(" ").length} minutes to read. </p>
         <h2>Preview</h2>
         <p>{text.length === 0 ? "Enter your text in the textbox above to preview it here" : text}</p>
